@@ -38,13 +38,23 @@ startButtonEl.addEventListener('click', function () {
 
             for (let i = 1; i <= 100; i++) {
 
+                let bombNumbers = []
                 let squareEl = createSquare('', 10, 10);
-
+              
                 gridEl.append(squareEl);
+
+                getANumberList(bombNumbers, 16, 1, 100)
+
                 squareEl.addEventListener('click', function () {
 
+                    if (bombNumbers.includes(i)) {
+                        
+                        console.log("game over")
+
+                    }
+
                     // Evento che gestisce il clic sulla casella, mostrando in console il rispettivo numero
-                    squareEl.classList.toggle('active');
+                    squareEl.classList.add('active');
                     console.log(i);
 
                 });
@@ -61,12 +71,22 @@ startButtonEl.addEventListener('click', function () {
 
             for (let i = 1; i <= 81; i++) {
 
+                let bombNumbers = []
                 let squareEl = createSquare('', 9, 10);
 
                 gridEl.append(squareEl);
+
+                getANumberList(bombNumbers, 16, 1, 81)
+
                 squareEl.addEventListener('click', function () {
 
-                    squareEl.classList.toggle('active');
+                    if (bombNumbers.includes(i)) {
+                        
+                        console.log("game over")
+
+                    }
+
+                    squareEl.classList.add('active');
                     console.log(i);
 
                 });
@@ -82,13 +102,24 @@ startButtonEl.addEventListener('click', function () {
 
             for (let i = 1; i <= 49; i++) {
 
+                let bombNumbers = []
                 let squareEl = createSquare('', 7, 10);
 
                 gridEl.append(squareEl);
+
+                getANumberList(bombNumbers, 16, 1, 49)
+
                 squareEl.addEventListener('click', function () {
 
-                    squareEl.classList.toggle('active');
+                    if (bombNumbers.includes(i)) {
+                        
+                        console.log("game over")
+
+                    }
+
+                    squareEl.classList.add('active');
                     console.log(i);
+
 
                 });
             }
@@ -101,15 +132,7 @@ startButtonEl.addEventListener('click', function () {
 
 });
 
-
-let array = [];
-
-getANumberList(array, 16, 1, 100);
-
-console.log(array);
-
-
-//Funzione che genera un array di numeri randomici che non si ripetono tra loro, specificando il nome dell'array da creare (dichiarato vuoto in precedenza), la quantità di numeri randomici che deve contenere e il range di numeri (min-max) da prendere in considerazione.
+// Funzione che genera un array di numeri randomici che non si ripetono tra loro, specificando il nome dell'array da creare (dichiarato vuoto in precedenza), la quantità di numeri randomici che deve contenere e il range di numeri (min-max) da prendere in considerazione.
 function getANumberList(arrayName, arrayLength, min, max) {
 
     let randomNumber;
@@ -130,6 +153,7 @@ function getANumberList(arrayName, arrayLength, min, max) {
 
 }
 
+// Funzione che genera un numero random in un range specificato di numeri
 function getRandomNumber(min, max) {
 
     return Math.floor(Math.random() * (max - min + 1)) + min;
