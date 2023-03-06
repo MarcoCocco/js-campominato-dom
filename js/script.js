@@ -101,6 +101,43 @@ startButtonEl.addEventListener('click', function () {
 
 });
 
+
+let array = [];
+
+getANumberList(array, 16, 1, 100);
+
+console.log(array);
+
+
+//Funzione che genera un array di numeri randomici che non si ripetono tra loro, specificando il nome dell'array da creare (dichiarato vuoto in precedenza), la quantità di numeri randomici che deve contenere e il range di numeri (min-max) da prendere in considerazione.
+function getANumberList(arrayName, arrayLength, min, max) {
+
+    let randomNumber;
+
+    for (let i = 1; i <= arrayLength; i++) {
+
+        randomNumber = getRandomNumber(min, max);
+
+        while (arrayName.includes(getRandomNumber(min, max))) {
+            randomNumber = getRandomNumber(min, max);
+        }
+
+        arrayName.push(randomNumber);
+
+    }
+
+    return array;
+
+}
+
+function getRandomNumber(min, max) {
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+}
+
+
+
 // La funzione mi permette di creare un quadrato dalla grandezza variabile in base al numero di colonne utilizzate nella griglia e il gap dato
 function createSquare(squareNum, colNum, gap) {
 
@@ -113,8 +150,9 @@ function createSquare(squareNum, colNum, gap) {
     square.textContent = squareNum;
 
     return square;
-    
+
 }
+
 
 
 
