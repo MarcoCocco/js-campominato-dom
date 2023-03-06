@@ -18,9 +18,7 @@ let difficultEl = document.getElementById('difficult');
 let winPopUpEl = document.getElementById('win-popup');
 let losePopUpEl = document.getElementById('lose-popup');
 let loseResetButtonEl = document.querySelector('.lose-reset-btn');
-
-
-
+let winResetButtonEl = document.querySelector('.win-reset-btn');
 
 // Aggiungo una variabile sentinella che indica se la griglia sia già stata generata, e la inizializzo su false
 let gridGen = false;
@@ -52,7 +50,7 @@ startButtonEl.addEventListener('click', function () {
 
             for (let i = 1; i <= 100; i++) {
 
-                let squareEl = createSquare(i, 10, 10);
+                let squareEl = createSquare('', 10, 10);
 
                 gridEl.append(squareEl);
 
@@ -82,11 +80,25 @@ startButtonEl.addEventListener('click', function () {
 
                     }
 
+                    if (score === 100 - 16) {
+
+                        winPopUpEl.classList.remove('hidden');
+                        let scoreEl = document.createElement('p');
+                        scoreEl.textContent = `Punteggio: ${score}`;
+                        winPopUpEl.append(scoreEl);
+
+                        winResetButtonEl.addEventListener('click', function () {
+                            winPopUpEl.classList.add('hidden');
+                            scoreEl.innerHTML = '';
+                            gridEl.style.display = 'none';
+                            gridEl.innerHTML = '';
+                            gridGen = false;
+                        });
+                    }
+
                 })
 
             }
-
-
 
             // Aggiorna la variabile sentinella, mostrando che la griglia è stata creata
             gridGen = true;
@@ -103,7 +115,6 @@ startButtonEl.addEventListener('click', function () {
             console.log(bombNumbers);
 
             for (let i = 1; i <= 81; i++) {
-
 
                 let squareEl = createSquare('', 9, 10);
 
@@ -132,6 +143,22 @@ startButtonEl.addEventListener('click', function () {
                         squareEl.classList.add('active');
                         console.log(i);
                         score++;
+
+                        if (score === 81 - 16) {
+
+                            winPopUpEl.classList.remove('hidden');
+                            let scoreEl = document.createElement('p');
+                            scoreEl.textContent = `Punteggio: ${score}`;
+                            winPopUpEl.append(scoreEl);
+
+                            winResetButtonEl.addEventListener('click', function () {
+                                winPopUpEl.classList.add('hidden');
+                                scoreEl.innerHTML = '';
+                                gridEl.style.display = 'none';
+                                gridEl.innerHTML = '';
+                                gridGen = false;
+                            });
+                        }
 
                     }
 
@@ -181,7 +208,24 @@ startButtonEl.addEventListener('click', function () {
                         console.log(i);
                         score++;
 
+                        if (score === 49 - 16) {
+
+                            winPopUpEl.classList.remove('hidden');
+                            let scoreEl = document.createElement('p');
+                            scoreEl.textContent = `Punteggio: ${score}`;
+                            winPopUpEl.append(scoreEl);
+
+                            winResetButtonEl.addEventListener('click', function () {
+                                winPopUpEl.classList.add('hidden');
+                                scoreEl.innerHTML = '';
+                                gridEl.style.display = 'none';
+                                gridEl.innerHTML = '';
+                                gridGen = false;
+                            });
+                        }
+
                     }
+
 
                 })
 
@@ -194,9 +238,6 @@ startButtonEl.addEventListener('click', function () {
     }
 
 });
-
-
-
 
 // Funzione che genera un array di numeri randomici che non si ripetono tra loro, specificando il nome dell'array da creare (dichiarato vuoto in precedenza), la quantità di numeri randomici che deve contenere e il range di numeri (min-max) da prendere in considerazione.
 function getANumberList(arrayName, arrayLength, min, max) {
