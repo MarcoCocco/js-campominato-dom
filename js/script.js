@@ -126,7 +126,7 @@ function getANumberList(arrayName, arrayLength, min, max) {
 
     }
 
-    return array;
+    return arrayName;
 
 }
 
