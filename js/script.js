@@ -15,6 +15,13 @@ let startButtonEl = document.getElementById('start-button');
 let gridEl = document.getElementById('grid');
 let difficultEl = document.getElementById('difficult');
 
+let winPopUpEl = document.getElementById('win-popup');
+let losePopUpEl = document.getElementById('lose-popup');
+let loseResetButtonEl = document.querySelector('.lose-reset-btn');
+
+
+
+
 // Aggiungo una variabile sentinella che indica se la griglia sia già stata generata, e la inizializzo su false
 let gridGen = false;
 
@@ -27,6 +34,8 @@ difficultEl.addEventListener('click', function () {
 
 // Evento che gestisce il pulsante start
 startButtonEl.addEventListener('click', function () {
+
+    let score = 0;
 
     // Dopo l'avvio viene mostrato il contenitore della griglia
     gridEl.style.display = 'flex';
@@ -43,28 +52,41 @@ startButtonEl.addEventListener('click', function () {
 
             for (let i = 1; i <= 100; i++) {
 
-
-                let squareEl = createSquare('', 10, 10);
+                let squareEl = createSquare(i, 10, 10);
 
                 gridEl.append(squareEl);
-
-
-
 
                 squareEl.addEventListener('click', function () {
 
                     if (bombNumbers.includes(i)) {
 
-                        console.log("game over")
+                        squareEl.classList.add('bombactive');
+                        losePopUpEl.classList.remove('hidden');
+                        let scoreEl = document.createElement('p');
+                        scoreEl.textContent = `Punteggio: ${score}`;
+                        losePopUpEl.append(scoreEl);
+
+                        loseResetButtonEl.addEventListener('click', function () {
+                            losePopUpEl.classList.add('hidden');
+                            scoreEl.innerHTML = '';
+                            gridEl.style.display = 'none';
+                            gridEl.innerHTML = '';
+                            gridGen = false;
+                        });
+
+                    } else {
+
+                        squareEl.classList.add('active');
+                        console.log(i);
+                        score++;
 
                     }
 
-                    // Evento che gestisce il clic sulla casella, mostrando in console il rispettivo numero
-                    squareEl.classList.add('active');
-                    console.log(i);
+                })
 
-                });
             }
+
+
 
             // Aggiorna la variabile sentinella, mostrando che la griglia è stata creata
             gridGen = true;
@@ -87,20 +109,33 @@ startButtonEl.addEventListener('click', function () {
 
                 gridEl.append(squareEl);
 
-
-
                 squareEl.addEventListener('click', function () {
 
                     if (bombNumbers.includes(i)) {
 
-                        console.log("game over")
+                        squareEl.classList.add('bombactive');
+                        losePopUpEl.classList.remove('hidden');
+                        let scoreEl = document.createElement('p');
+                        scoreEl.textContent = `Punteggio: ${score}`;
+                        losePopUpEl.append(scoreEl);
+
+                        loseResetButtonEl.addEventListener('click', function () {
+                            losePopUpEl.classList.add('hidden');
+                            scoreEl.innerHTML = '';
+                            gridEl.style.display = 'none';
+                            gridEl.innerHTML = '';
+                            gridGen = false;
+                        });
+
+                    } else {
+
+                        squareEl.classList.add('active');
+                        console.log(i);
+                        score++;
 
                     }
 
-                    squareEl.classList.add('active');
-                    console.log(i);
-
-                });
+                })
             }
 
             gridGen = true;
@@ -115,28 +150,41 @@ startButtonEl.addEventListener('click', function () {
 
             getANumberList(bombNumbers, 16, 1, 49)
             console.log(bombNumbers);
-            
+
             for (let i = 1; i <= 49; i++) {
 
                 let squareEl = createSquare('', 7, 10);
 
                 gridEl.append(squareEl);
 
-
-
                 squareEl.addEventListener('click', function () {
 
                     if (bombNumbers.includes(i)) {
 
-                        console.log("game over")
+                        squareEl.classList.add('bombactive');
+                        losePopUpEl.classList.remove('hidden');
+                        let scoreEl = document.createElement('p');
+                        scoreEl.textContent = `Punteggio: ${score}`;
+                        losePopUpEl.append(scoreEl);
+
+                        loseResetButtonEl.addEventListener('click', function () {
+                            losePopUpEl.classList.add('hidden');
+                            scoreEl.innerHTML = '';
+                            gridEl.style.display = 'none';
+                            gridEl.innerHTML = '';
+                            gridGen = false;
+                        });
+
+                    } else {
+
+                        squareEl.classList.add('active');
+                        console.log(i);
+                        score++;
 
                     }
 
-                    squareEl.classList.add('active');
-                    console.log(i);
+                })
 
-
-                });
             }
 
             gridGen = true;
@@ -146,6 +194,9 @@ startButtonEl.addEventListener('click', function () {
     }
 
 });
+
+
+
 
 // Funzione che genera un array di numeri randomici che non si ripetono tra loro, specificando il nome dell'array da creare (dichiarato vuoto in precedenza), la quantità di numeri randomici che deve contenere e il range di numeri (min-max) da prendere in considerazione.
 function getANumberList(arrayName, arrayLength, min, max) {
@@ -168,8 +219,6 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 
 }
-
-
 
 // La funzione mi permette di creare un quadrato dalla grandezza variabile in base al numero di colonne utilizzate nella griglia e il gap dato
 function createSquare(squareNum, colNum, gap) {
