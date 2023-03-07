@@ -65,16 +65,19 @@ startButtonEl.addEventListener('click', function () {
                         losePopUpEl.append(scoreEl);
 
                         loseResetButtonEl.addEventListener('click', function () {
+
                             losePopUpEl.classList.add('hidden');
                             scoreEl.innerHTML = '';
                             gridEl.style.display = 'none';
                             gridEl.innerHTML = '';
                             gridGen = false;
+
                         });
 
                     } else {
-
+                        
                         squareEl.classList.add('active');
+                        squareEl.disabled = true;
                         console.log(i);
                         score++;
 
@@ -88,15 +91,17 @@ startButtonEl.addEventListener('click', function () {
                         winPopUpEl.append(scoreEl);
 
                         winResetButtonEl.addEventListener('click', function () {
+
                             winPopUpEl.classList.add('hidden');
                             scoreEl.innerHTML = '';
                             gridEl.style.display = 'none';
                             gridEl.innerHTML = '';
                             gridGen = false;
+
                         });
                     }
 
-                })
+                }, { once: true })
 
             }
 
@@ -131,11 +136,13 @@ startButtonEl.addEventListener('click', function () {
                         losePopUpEl.append(scoreEl);
 
                         loseResetButtonEl.addEventListener('click', function () {
+
                             losePopUpEl.classList.add('hidden');
                             scoreEl.innerHTML = '';
                             gridEl.style.display = 'none';
                             gridEl.innerHTML = '';
                             gridGen = false;
+
                         });
 
                     } else {
@@ -152,17 +159,19 @@ startButtonEl.addEventListener('click', function () {
                             winPopUpEl.append(scoreEl);
 
                             winResetButtonEl.addEventListener('click', function () {
+
                                 winPopUpEl.classList.add('hidden');
                                 scoreEl.innerHTML = '';
                                 gridEl.style.display = 'none';
                                 gridEl.innerHTML = '';
                                 gridGen = false;
+
                             });
                         }
 
                     }
 
-                })
+                }, { once: true })
             }
 
             gridGen = true;
@@ -195,11 +204,13 @@ startButtonEl.addEventListener('click', function () {
                         losePopUpEl.append(scoreEl);
 
                         loseResetButtonEl.addEventListener('click', function () {
+
                             losePopUpEl.classList.add('hidden');
                             scoreEl.innerHTML = '';
                             gridEl.style.display = 'none';
                             gridEl.innerHTML = '';
                             gridGen = false;
+
                         });
 
                     } else {
@@ -216,18 +227,19 @@ startButtonEl.addEventListener('click', function () {
                             winPopUpEl.append(scoreEl);
 
                             winResetButtonEl.addEventListener('click', function () {
+
                                 winPopUpEl.classList.add('hidden');
                                 scoreEl.innerHTML = '';
                                 gridEl.style.display = 'none';
                                 gridEl.innerHTML = '';
                                 gridGen = false;
+
                             });
                         }
 
                     }
 
-
-                })
+                }, { once: true })
 
             }
 
@@ -275,7 +287,3 @@ function createSquare(squareNum, colNum, gap) {
     return square;
 
 }
-
-
-
-
